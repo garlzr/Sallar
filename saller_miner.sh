@@ -1,9 +1,9 @@
 #!/bin/bash
 
 APP_NAME="my-worker"
-APP_SCRIPT="new.js"
-ERROR_LOG="./error.log"
-OUTPUT_LOG="./output.log"
+APP_SCRIPT="/root/sallar/new.js"
+ERROR_LOG="/root/sallar/error.log"
+OUTPUT_LOG="/root/sallar/output.log"
 CRON_RESTART="0 */5 * * *"
 
 set -e
