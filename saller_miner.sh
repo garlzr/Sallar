@@ -80,33 +80,42 @@ view_error_file() {
     tail -n 100 "$ERROR_LOG" | sed "s/^/[$(date '+%Y-%m-%d %H:%M:%S')] /"
 }
 
-show_help() {
+show_menu() {
     echo ""
-    echo "🛠️  黑奴挖矿"
-    echo ""
-    echo "可用选项："
-    echo "  install       功能1 安装并配置 PM2 Saller 项目"
-    echo "  restart       功能2 重启该项目"
-    echo "  logs          功能3 实时查看日志"
-    echo "  error-log     功能4 查看错误日志（从文件）"
+    echo "🛠️  黑奴挖矿 PM2 管理脚本"
+    echo "=============================="
+    echo "  1. 安装并配置 PM2 Saller 项目"
+    echo "  2. 重启该项目"
+    echo "  3. 实时查看日志"
+    echo "  4. 查看错误日志（从文件）"
+    echo "=============================="
+    read -p "➤ 请输入数字选项 [1-4]: " choice
     echo ""
 }
 
 # 主逻辑入口
-case "$1" in
-    install)
-        install_pm2_and_config
-        ;;
-    restart)
-        restart_project
-        ;;
-    logs)
-        view_logs
-        ;;
-    error-log)
-        view_error_file
-        ;;
-    *)
-        show_help
-        ;;
-esac
+while true; do
+    show_menu
+
+    case "$choice" in
+        1)
+            install_pm2_and_config
+            break
+            ;;
+        2)
+            restart_project
+            break
+            ;;
+        3)
+            view_logs
+            break
+            ;;
+        4)
+            view_error_file
+            break
+            ;;
+        *)
+            echo "❌ 无效选项，请输入 1 到 4。"
+            ;;
+    esac
+done
