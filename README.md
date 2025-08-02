@@ -1,2 +1,2 @@
 # Sallar
-mine
+check balance
